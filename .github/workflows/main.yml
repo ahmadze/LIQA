@@ -1,6 +1,6 @@
 name: Upload Hidden Files
 
-on: [push, pull_request]  # Run on every push or PR
+on: [push, pull_request]
 
 jobs:
   upload-hidden-files:
@@ -10,9 +10,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Upload Artifacts (including hidden files)
+      - name: Upload Artifacts (Including Hidden Files)
         uses: actions/upload-artifact@v4
         with:
           name: hidden-files
-          path: .
+          path: |
+            .  # Upload everything in the root directory
+            .hidden-file  # Ensure the specific hidden file is included
           include-hidden-files: true
